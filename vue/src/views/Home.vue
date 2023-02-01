@@ -2,7 +2,7 @@
   <div class="home" style="padding: 10px">
 <!--    功能区域-->
     <div style="margin: 10px 0">
-      <el-button type="primary">新增</el-button>
+      <el-button type="primary" @click="add">新增</el-button>
       <el-button type="primary">导入</el-button>
       <el-button type="primary">导出</el-button>
 
@@ -41,6 +41,38 @@
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
       />
+      <el-dialog v-model="dialogVisible" title="Tips" width="30%" :before-close="handleClose">
+        <el-form :modle="form" label-width="120px">
+          <el-form-item label="用户名">
+            <el-input v-model="form.username" style="width: 80%" />
+          </el-form-item>
+          <el-form-item label="昵称">
+            <el-input v-model="form.nickname" style="width: 80%" />
+          </el-form-item>
+          <el-form-item label="年龄">
+            <el-input v-model="form.age" style="width: 80%" />
+          </el-form-item>
+          <el-form-item label="性别">
+            <el-radio v-model="form.sex" label="男" size="small">男</el-radio>
+            <el-radio v-model="form.sex" label="女" size="small">女</el-radio>
+            <el-radio v-model="form.sex" label="外星人" size="small">外星人</el-radio>
+
+
+          </el-form-item>
+          <el-form-item label="地址">
+            <el-input type="textarea" v-model="form.address" style="width: 80%" />
+          </el-form-item>
+
+        </el-form>
+        <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="dialogVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="save">
+          Confirm
+        </el-button>
+      </span>
+        </template>
+      </el-dialog>
     </div>
   </div>
 </template>
@@ -49,6 +81,8 @@
 // @ is an alias to /src
 
 
+import request from "../utils/request";
+
 export default {
   name: 'Home',
   components: {
@@ -56,6 +90,8 @@ export default {
   },
   data(){
     return {
+      form:{},
+      dialogVisible:false,
       search:'',
       currentPage: 1,
       total:10,
@@ -84,6 +120,15 @@ export default {
     }
   },
   methods:{
+    add(){
+      this.dialogVisible = true   //打开弹窗
+      this.form = {}   //清空表单
+    },
+    save(){
+      request.post("http://fgj9p5.natappfree.cc/user", this.form).then(res => {
+        console.log(res)
+      })
+    },
     handEdit(){
 
     },
