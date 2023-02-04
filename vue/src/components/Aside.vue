@@ -18,9 +18,13 @@
               <span>系统管理</span>
             </template>
 
-              <el-menu-item index="user">
+              <el-menu-item index="user" :route="{path:'/'}">
                 <el-icon><Document /></el-icon>
                 <span>用户管理</span>
+              </el-menu-item>
+              <el-menu-item index="data" :route="{path:'/'}">
+                <el-icon><Document /></el-icon>
+                <span>数据管理</span>
               </el-menu-item>
 
           </el-sub-menu>
@@ -31,7 +35,7 @@
               <span>系统管理2</span>
             </template>
 
-            <el-menu-item index="user">
+            <el-menu-item index="user2">
               <el-icon><Document /></el-icon>
               <span>用户管理2</span>
             </el-menu-item>
