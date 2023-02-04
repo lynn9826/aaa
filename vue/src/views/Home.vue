@@ -110,7 +110,7 @@ export default {
   },
   methods:{
     load(){
-      request.get("http://dbp7yh.natappfree.cc/user",{
+      request.get("http://dpy472.natappfree.cc/user",{
         params: {
           pageNum: this.currentPage,
           pageSize: this.pageSize,
@@ -133,7 +133,7 @@ export default {
       // 如果有id 调用编辑接口
       // 如果没有id 调用新增接口
       if (this.form.id) {
-        request.put("http://dbp7yh.natappfree.cc/user", this.form).then(res => {
+        request.put("http://dpy472.natappfree.cc/user", this.form).then(res => {
           console.log(res)
           if (res.code === 0){
             this.$message({
@@ -149,7 +149,7 @@ export default {
           this.load()   //刷新表格的数据
         })
       } else {
-        request.post("http://dbp7yh.natappfree.cc/user", this.form).then(res => {
+        request.post("http://dpy472.natappfree.cc/user", this.form).then(res => {
           console.log(res)
           if (res.code === 0){
             this.$message({
@@ -178,7 +178,7 @@ export default {
     },
     handleDelete(id){
       console.log(id)
-      request.delete("http://dbp7yh.natappfree.cc/user/" + id).then(res =>{
+      request.delete("http://dpy472.natappfree.cc/user/" + id).then(res =>{
         console.log(res)
         if (res.code === 0){
           this.$message({

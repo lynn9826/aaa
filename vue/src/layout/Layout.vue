@@ -1,5 +1,5 @@
 <template>
-  <div id="nav">
+  <div>
     <Header />
     <!--  主体  -->
     <div style="display: flex">
@@ -11,18 +11,25 @@
   </div>
 </template>
 
+
+
 <script>
-import Header from "@/components/Header";
-import Aside from "@/components/Aside";
+// ./ 当前文件夹
+// ../ 上一级文件夹
+import Header from "../components/Header";
+import Aside from "../components/Aside";
 
 export default {
   name: "Layout",
   components: {
     Header,
-    Aside
+    Aside,
+
   }
 }
 </script>
 
+
 <style scoped>
+
 </style>
