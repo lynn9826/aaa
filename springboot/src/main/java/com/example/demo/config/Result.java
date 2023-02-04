@@ -75,6 +75,10 @@ public class Result<T> {
         return new Result(ResultCode.FAIL);
     }
 
+    public static Result fail(ResultCode resultCode) {
+        return new Result(resultCode);
+    }
+
     @Override
     public String toString() {
         return "Result{" +

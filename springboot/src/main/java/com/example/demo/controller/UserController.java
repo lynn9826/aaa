@@ -3,10 +3,14 @@ package com.example.demo.controller;
 
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.demo.config.Result;
+import com.example.demo.config.ResultCode;
 import com.example.demo.entity.User;
+import com.example.demo.mapper.UserMapper;
 import com.example.demo.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -85,6 +89,35 @@ public class UserController {
             e.printStackTrace();
         }
         return Result.fail();
+    }
+
+
+    @PostMapping("/login")
+    public Result<?> login(@RequestBody User user) {
+        log.info("登录：username = {}, password = {}", user.getUsername(), user.getPassword());
+        LambdaQueryWrapper<User> queryWrapper = Wrappers.lambdaQuery();
+        queryWrapper.eq(User::getUsername, user.getUsername()).eq(User::getPassword, user.getPassword());
+        User res = userService.getOne(queryWrapper);
+        if (res == null) {
+            return Result.fail(ResultCode.LOGIN_ERROR);
+        }
+        return Result.success();
+    }
+
+    @PostMapping("/register")
+    public Result<?> register(@RequestBody User user) {
+        log.info("注册：username = {}, password = {}, confirm: {}", user.getUsername(), user.getPassword(), user.getConfirm());
+        if (!StrUtil.equals(user.getPassword(), user.getConfirm())) {
+            return Result.fail(ResultCode.LOGIN_ERROR_2);
+        }
+        // 查询账号是否重复
+        User res = userService.getOne(Wrappers.<User>lambdaQuery().eq(User::getUsername, user.getUsername()));
+        if (res != null) {
+            return Result.fail(ResultCode.LOGIN_ERROR_3);
+        }
+        // 注册成功
+        userService.save(user);
+        return Result.success();
     }
 
 }

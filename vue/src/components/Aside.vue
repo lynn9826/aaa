@@ -18,22 +18,22 @@
               <span>系统管理</span>
             </template>
 
-              <el-menu-item index="user">
+              <el-menu-item index="user" :router="{path: '/home'}">
                 <el-icon><Document /></el-icon>
                 <span>用户管理</span>
               </el-menu-item>
 
           </el-sub-menu>
 
-          <el-sub-menu index="2">
+          <el-sub-menu index="data">
             <template #title>
               <el-icon><location /></el-icon>
-              <span>系统管理2</span>
+              <span>数据管理</span>
             </template>
 
             <el-menu-item index="user">
               <el-icon><Document /></el-icon>
-              <span>用户管理2</span>
+              <span>优惠券管理</span>
             </el-menu-item>
 
           </el-sub-menu>
