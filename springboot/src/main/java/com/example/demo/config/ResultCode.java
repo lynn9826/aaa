@@ -6,7 +6,7 @@ package com.example.demo.config;
  */
 public enum ResultCode {
 
-    SUCCESS(200, "成功"),
+    SUCCESS(0, "成功"),
     FAIL(501, "失败"),
     ;
 
