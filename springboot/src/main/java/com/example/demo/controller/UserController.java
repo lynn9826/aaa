@@ -44,14 +44,14 @@ public class UserController {
 
     @PostMapping("")
     public Result insert(@RequestBody User user) {
-        log.info("einsert(user = {})", user);
+        log.info("user.insert(user = {})", user);
         userService.save(user);
         return Result.success();
     }
 
     @PutMapping("")
     public Result update(@RequestBody User user) {
-        log.info("update(user = {})", user);
+        log.info("user.update(user = {})", user);
         userService.updateById(user);
         return Result.success();
     }
@@ -66,7 +66,7 @@ public class UserController {
     public Result<Page<User>> findPage(@RequestParam(defaultValue = "1") Integer pageNum,
                                        @RequestParam(defaultValue = "10") Integer pageSize,
                                        @RequestParam(defaultValue = "") String search) {
-        log.info("findPage : pageNum = {}, pageSize = {}, search = {}", pageNum, pageSize, search);
+        log.info("user.findPage : pageNum = {}, pageSize = {}, search = {}", pageNum, pageSize, search);
         try {
             LambdaQueryWrapper<User> wrapper = Wrappers.<User>lambdaQuery();
             if (StrUtil.isNotBlank(search)) {
