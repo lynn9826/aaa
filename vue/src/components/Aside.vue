@@ -6,6 +6,7 @@
         <el-menu
             style="width: 200px; min-height: calc(100vh - 50px)"
             default-active="user"
+            router
             :default-openeds="['1']"
             :unique-opened="true"
             class="el-menu-vertical-demo"
@@ -18,13 +19,13 @@
               <span>系统管理</span>
             </template>
 
-              <el-menu-item index="user" :route="{path:'/'}">
+              <el-menu-item index="user">
                 <el-icon><Document /></el-icon>
                 <span>用户管理</span>
               </el-menu-item>
-              <el-menu-item index="data" :route="{path:'/'}">
+              <el-menu-item index="book">
                 <el-icon><Document /></el-icon>
-                <span>数据管理</span>
+                <span>s=书籍管理</span>
               </el-menu-item>
 
           </el-sub-menu>

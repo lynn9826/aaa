@@ -60,7 +60,7 @@ export default {
           })
           return
         }
-        request.post("http://dpy472.natappfree.cc/user/register",this.form).then(res =>{
+        request.post("http://2stzeh.natappfree.cc/user/register",this.form).then(res =>{
           if (res.code === 0){
             this.$message({
               type: "success",

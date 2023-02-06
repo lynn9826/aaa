@@ -49,8 +49,9 @@ export default {
       this.$refs['form'].validate((valid) => {
         console.log('valid = ', valid)
         if (valid) {
-          request.post("http://dpy472.natappfree.cc/user/login",this.form).then(res =>{
+          request.post("http://2stzeh.natappfree.cc/user/login",this.form).then(res =>{
             if (res.code === 0){
+              sessionStorage.setItem("user", JSON.stringify(res.data))
               this.$message({
                 type: "success",
                 message: "登录成功"
